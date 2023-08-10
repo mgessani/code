@@ -1,0 +1,453 @@
+########################### 
+########################### 
+########################### card 
+########################### pannellino dati sensore esterno stazione meteo
+########################### 
+########################### 
+########################### 
+########################### 
+########################### 
+
+
+
+
+type: custom:stack-in-card
+cards:
+
+#entity: sensor.meteosquizza_feels_like_temperature
+    
+  - type: custom:mushroom-template-card
+    entity: sensor.meteosquizza_feels_like_temperature
+    primary: Outdoor
+    secondary: Temperatura percepita {{ (states('sensor.meteosquizza_feels_like_temperature'))}}
+    multiline_secondary: true
+    tap_action: 
+      action: more-info
+    card_mod:
+      style: |
+        ha-card {
+          --card-primary-font-size: 25px;
+          --card-secondary-font-size: 16px;
+          --primary-text-color: rgb(28, 172, 252);
+          --secondary-text-color: yellow;
+          --card-primary-font-weight: Normal;
+          --card-secondary-font-weight: Normal;
+          background-color: rgb(85, 93, 104);
+          border: 0px;
+          text-align: center;
+          --card-height: 20px;
+          card-height: 20px;
+        }
+    
+
+  ##predispongo delle colonne  
+  - type: custom:stack-in-card
+    mode: horizontal
+    cards:
+      ##colonna temperatura
+      - type: custom:stack-in-card
+        cards:
+  
+          - type: custom:mushroom-entity-card
+            entity: sensor.meteosquizza_outdoor_temperature
+            tap_action: 
+              action: more-info
+            name: 'Temperatura'
+            primary_info: name
+            secondary_info: state
+            icon_type: entity-picture
+            card_mod:
+              style: |
+                ha-card {
+                  --card-primary-font-size: 20px;
+                  --card-secondary-font-size: 22px;
+                  --primary-text-color: rgb(255, 255, 252);
+                  --card-primary-font-weight: Normal;
+                  --card-secondary-font-weight: Normal;
+                  --secondary-text-color: rgb(255, 255, 252);
+                  background-color: rgb(85, 93, 104);
+                  border: 0px;
+                  text-align: center;
+                }
+                :host {
+                  border: '0px';
+                }
+          #altre 2 colonne
+          - type: custom:stack-in-card
+            mode: horizontal
+            cards:
+              ##temp esterna max
+              - type: custom:mushroom-entity-card
+                entity: sensor.temperatura_esterna_24h_max
+                tap_action: 
+                  action: more-info
+                name: 'Temperatura max'
+                primary_info: none
+                secondary_info: state
+                #icon_type: entity-picture
+                icon: mdi:arrow-collapse-up
+                icon_color: red
+                layout: vertical
+                card_mod:
+                  style: |
+                    ha-card {
+                      --card-primary-font-size: 20px;
+                      --card-secondary-font-size: 18px;
+                      --primary-text-color: rgb(255, 255, 252);
+                      --card-primary-font-weight: Normal;
+                      --card-secondary-font-weight: Normal;
+                      --secondary-text-color: rgb(255, 0, 0);
+                      background-color: rgb(85, 93, 104);
+                      border: 0px;
+                      text-align: center;
+                    }
+                    :host {
+                      border: '0px';
+                    } 
+              ##temp esterna min
+              - type: custom:mushroom-entity-card
+                entity: sensor.temperatura_esterna_24h_min
+                tap_action: 
+                  action: more-info
+                name: 'Temperatura min'
+                primary_info: none
+                secondary_info: state
+                #icon_type: entity-picture
+                icon: mdi:arrow-collapse-down
+                layout: vertical
+                icon_color: green
+                card_mod:
+                  style: |
+                    ha-card {
+                      --card-primary-font-size: 20px;
+                      --card-secondary-font-size: 18px;
+                      --primary-text-color: rgb(255, 255, 252);
+                      --card-primary-font-weight: Normal;
+                      --card-secondary-font-weight: Normal;
+                      --secondary-text-color: rgb(0, 255, 0);
+                      background-color: rgb(85, 93, 104);
+                      border: 0px;
+                      text-align: center;
+                    }
+                    :host {
+                      border: '0px';
+                    }
+            card_mod:
+              style: |
+                ha-card {
+                  background-color: rgb(85, 93, 104);
+                  border: 0px;
+                }
+                :host {
+                  border: '0px';
+                }                   
+          ##riga sotto con l'orario
+          - type: custom:stack-in-card
+            mode: horizontal
+            cards:
+              ##temp esterna max data
+              - type: custom:mushroom-entity-card
+                entity: sensor.temperatura_esterna_24h_max_orario
+                tap_action: 
+                  action: none
+                name: 'Temperatura max'
+                primary_info: none
+                secondary_info: state
+                icon_type: none
+                card_mod:
+                  style: |
+                    ha-card {
+                      --card-primary-font-size: 20px;
+                      --card-secondary-font-size: 18px;
+                      --primary-text-color: rgb(255, 255, 252);
+                      --card-primary-font-weight: Normal;
+                      --card-secondary-font-weight: Normal;
+                      --secondary-text-color: rgb(255, 0, 0);
+                      background-color: rgb(85, 93, 104);
+                      border: 0px;
+                      text-align: center;
+                    }
+                    :host {
+                      border: '0px';
+                    }
+              ##temp esterna min data
+              - type: custom:mushroom-entity-card
+                entity: sensor.temperatura_esterna_24h_min_orario
+                tap_action: 
+                  action: none
+                name: 'Temperatura min'
+                primary_info: none
+                secondary_info: state
+                icon_type: none
+                card_mod:
+                  style: |
+                    ha-card {
+                      --card-primary-font-size: 20px;
+                      --card-secondary-font-size: 18px;
+                      --primary-text-color: rgb(255, 255, 252);
+                      --card-primary-font-weight: Normal;
+                      --card-secondary-font-weight: Normal;
+                      --secondary-text-color: rgb(0, 255, 0);
+                      background-color: rgb(85, 93, 104);
+                      border: 0px;
+                      text-align: center;
+                    }
+                    :host {
+                      border: '0px';
+                    }
+            card_mod:
+              style: |
+                ha-card {
+                  background-color: rgb(85, 93, 104);
+                  border: 0px;
+                }
+                :host {
+                  border: '0px';
+                }                   
+
+       
+        card_mod:
+          style: |
+            ha-card {
+              background-color: rgb(85, 93, 104);
+              border: 0px;
+            }
+            
+#umidita 
+      - type: custom:stack-in-card
+        cards:
+          ##colonna2
+          ##riga1 
+          ##umidita esterna
+          - type: custom:mushroom-humidifier-card
+            entity: sensor.meteosquizza_humidity
+            tap_action: 
+              action: more-info
+            name: 'Umidità'
+            primary_info: name
+            secondary_info: state
+            icon_type: entity-picture
+            card_mod:
+              style: |
+                ha-card {
+                  --card-primary-font-size: 20px;
+                  --card-secondary-font-size: 22px;
+                  --primary-text-color: rgb(255, 255, 252);
+                  --card-primary-font-weight: Normal;
+                  --card-secondary-font-weight: Normal;
+                  --secondary-text-color: rgb(255, 255, 252);
+                  background-color: rgb(85, 93, 104);
+                  border: 0px;
+                  text-align: center;
+                }
+                :host {
+                  border: '0px';
+                }
+          ##colonna2
+          ##riga 2
+          ##predispongo delle colonne      
+          - type: custom:stack-in-card
+            mode: horizontal
+            cards:
+              ##colonna2
+              ##riga2/colonna1 
+              ##umid esterna max
+              - type: custom:mushroom-entity-card
+                entity: sensor.umidita_esterna_24h_max
+                tap_action: 
+                  action: more-info
+                name: 'Umidità max'
+                primary_info: none
+                secondary_info: state
+                #icon_type: entity-picture
+                icon: mdi:arrow-collapse-up
+                icon_color: red
+                layout: vertical
+                card_mod:
+                  style: |
+                    ha-card {
+                      --card-primary-font-size: 20px;
+                      --card-secondary-font-size: 18px;
+                      --primary-text-color: rgb(255, 255, 252);
+                      --card-primary-font-weight: Normal;
+                      --card-secondary-font-weight: Normal;
+                      --secondary-text-color: rgb(255, 0, 0);
+                      background-color: rgb(85, 93, 104);
+                      border: 0px;
+                      text-align: center;
+                    }
+                    :host {
+                      border: '0px';
+                    }
+              ##colonna2
+              ##riga2/colonna2 
+              ##umid esterna max
+              - type: custom:mushroom-entity-card
+                entity: sensor.umidita_esterna_24h_min
+                tap_action: 
+                  action: more-info
+                name: 'Umidità min'
+                primary_info: none
+                secondary_info: state
+                #icon_type: entity-picture
+                icon: mdi:arrow-collapse-down
+                layout: vertical
+                icon_color: green
+                card_mod:
+                  style: |
+                    ha-card {
+                      --card-primary-font-size: 20px;
+                      --card-secondary-font-size: 18px;
+                      --primary-text-color: rgb(255, 255, 252);
+                      --card-primary-font-weight: Normal;
+                      --card-secondary-font-weight: Normal;
+                      --secondary-text-color: rgb(0, 255, 0);
+                      background-color: rgb(85, 93, 104);
+                      border: 0px;
+                      text-align: center;
+                    }
+                    :host {
+                      border: '0px';
+                    }
+            card_mod:
+              style: |
+                ha-card {
+                  background-color: rgb(85, 93, 104);
+                  border: 0px;
+                }
+                :host {
+                  border: '0px';
+                }                   
+          ##colonna2
+          ##riga 3
+          ##predispongo delle colonne
+          - type: custom:stack-in-card
+            mode: horizontal
+            cards:
+              ##colonna2
+              ##riga3/colonna1 
+              ##umid esterna max data
+              - type: custom:mushroom-entity-card
+                entity: sensor.umidita_esterna_24h_max_orario
+                tap_action: 
+                  action: none
+                name: 'Umidità max'
+                primary_info: none
+                secondary_info: state
+                icon_type: none
+                card_mod:
+                  style: |
+                    ha-card {
+                      --card-primary-font-size: 20px;
+                      --card-secondary-font-size: 18px;
+                      --primary-text-color: rgb(255, 255, 252);
+                      --card-primary-font-weight: Normal;
+                      --card-secondary-font-weight: Normal;
+                      --secondary-text-color: rgb(255, 0, 0);
+                      background-color: rgb(85, 93, 104);
+                      border: 0px;
+                      text-align: center;
+                    }
+                    :host {
+                      border: '0px';
+                    }
+              ##colonna2
+              ##riga3/colonna2 
+              ##umid esterna min data
+              - type: custom:mushroom-entity-card
+                entity: sensor.umidita_esterna_24h_min_orario
+                tap_action: 
+                  action: none
+                name: 'Temperatura min'
+                primary_info: none
+                secondary_info: state
+                icon_type: none
+                card_mod:
+                  style: |
+                    ha-card {
+                      --card-primary-font-size: 20px;
+                      --card-secondary-font-size: 18px;
+                      --primary-text-color: rgb(255, 255, 252);
+                      --card-primary-font-weight: Normal;
+                      --card-secondary-font-weight: Normal;
+                      --secondary-text-color: rgb(0, 255, 0);
+                      background-color: rgb(85, 93, 104);
+                      border: 0px;
+                      text-align: center;
+                    }
+                    :host {
+                      border: '0px';
+                    }
+            card_mod:
+              style: |
+                ha-card {
+                  background-color: rgb(85, 93, 104);
+                  border: 0px;
+                }
+                :host {
+                  border: '0px';
+                }                   
+
+          
+        card_mod:
+          style: |
+            ha-card {
+              background-color: rgb(85, 93, 104);
+              border: 0px;
+            }
+
+
+            
+    card_mod:
+      style: |
+        ha-card {
+          background-color: rgb(85, 93, 104);
+          border: 0px;
+        }
+        :host {
+          border: '0px';
+        }   
+
+  - type: custom:mini-graph-card
+    show:
+      name: false
+      legend: true
+      icon: false
+      labels: false
+      state: false 
+    entities:
+      - entity: sensor.meteosquizza_outdoor_temperature
+        name: Temperatura
+        color: blue
+      - entity: sensor.meteosquizza_humidity
+        name: Umidità
+        color: purple
+    card_mod:
+      style: |
+        ha-card {
+          --card-primary-font-size: 25px;
+          --card-secondary-font-size: 16px;
+          --primary-text-color: rgb(28, 172, 252);
+          --secondary-text-color: yellow;
+          --card-primary-font-weight: Normal;
+          --card-secondary-font-weight: Normal;
+          background-color: rgb(85, 93, 104);
+          border: 0px;
+          text-align: center;
+          --card-height: 20px;
+          card-height: 20px;
+        }
+
+
+card_mod:
+  style: |
+    ha-card {
+      width: 420px;
+      background-color: rgb(85, 93, 104);
+    }
+
+
+########################### 
+########################### 
+########################### 
+
